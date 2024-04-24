@@ -1,23 +1,30 @@
-public class pelicula {
-    String nombre;
-    int fechaDeLanzamiento;
-    int duracionEnMinutos;
-    boolean incluidoEnElPlan;
-    private double sumaDeLasEvaluaciones;
-    private int totalDeLasEvaluaciones;
-    int getTotalDeLasEvaluaciones(){
-        return totalDeLasEvaluaciones;
+package com.aluracursos.screammatch.modelos;
+
+import com.aluracursoscreammatch.calculos.Clasificable;
+
+public class pelicula extends Titulo implements Clasificable {
+    private String director;
+
+    public pelicula(String nombre, int fechaDeLanzamiento) {
+        super(nombre, fechaDeLanzamiento);
     }
-    void muestraFichaTecnica(){
-        System.out.println("El nombre de la pelicula es:"+ nombre);
-        System.out.println("Su fecha de lanzamiento es: "+ fechaDeLanzamiento);
-        System.out.println("La duración de la pelicula es:" + duracionEnMinutos);
+
+    public String getDirector() {
+        return director;
     }
-    void evalua(double nota){
-        sumaDeLasEvaluaciones += nota;
-        totalDeLasEvaluaciones++;
+
+    public void setDirector(String director) {
+        this.director = director;
     }
-    double calculaMedia(){
-        return sumaDeLasEvaluaciones / totalDeLasEvaluaciones;
+
+
+    @Override
+    public int getClasificacion() {
+        return (int) calculaMedia()/2;
+    }
+
+    @Override
+    public String toString() {
+        return "pelicula: " + this.getNombre() + " (" + getFechaDeLanzamiento() + ")";
     }
 }
